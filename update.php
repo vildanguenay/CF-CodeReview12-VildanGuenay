@@ -1,4 +1,9 @@
 <?php 
+if( !($_SESSION['admins']) ) {
+    header("Location: index.php");
+    exit;
+   }
+
 require 'db_connect.php';
 if ($_GET['id']) {
    $id = $_GET['id'];

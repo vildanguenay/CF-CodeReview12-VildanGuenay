@@ -25,7 +25,7 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
 
            <div class=row>
     <?php
-        $sql = "SELECT * FROM location";
+        $sql = "SELECT * FROM location WHERE category='restaurant'";
         $result = $conn->query($sql);
         if($result->num_rows > 0) {
           // get result rows as an associative array
@@ -43,24 +43,21 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
                           <li class='list-group-item'>".$lib['web']."</li>
                           <li class='list-group-item'>".$lib['description']."</li>
                         </ul>
-                     
-                        ".($_SESSION['admins'] ? "
-                          <div class='card-body'>
-                            <form action='delete.php' method='GET'>
-                  <!-- //   save id of clicked medium and send via btn click to db -->
-                              <input type='hidden' name='id' value='".$lib['location_id']."' />
-                              <button type='submit'>delete</button>
-                            </form>
-                            <form action='update.php' method='GET'>
-                              <input type='hidden' name='id' value='".$lib['location_id']."' />
-                              <button type='submit'>update</button>
-                            </form>
-                          </div>
-                        " : "")."</div>";
+                      </div>";
+                      if ($_SESSION['admins']) {
+                      echo  "<div class='card-body'>
+                              <form action='delete.php' method='GET'>
+              <!-- //   save id of clicked medium and send via btn click to db -->
+                                <input type='hidden' name='id' value='".$lib['location_id']."' />
+                                <button type='submit'>delete</button>
+                              </form>
+                              <form action='update.php' method='GET'>
+                                <input type='hidden' name='id' value='".$lib['location_id']."' />
+                                <button type='submit'>update</button>
+                              </form>
+                            </div>";
+                      }
             }
-            echo "<div style='width: 100%;'>
-                    <button><a href = 'create.php'>Add Medium Here...</a></button>
-                  </div>";
         } else  {
             echo "<tr>
                   <td colspan='5'>
@@ -68,10 +65,11 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
                   </td>
                 </tr>";
           }
-    
-    
     ?>
-    </div>       
+    <br>
+    </div>
+        
+           
 </body>
 </html>
 <?php ob_end_flush(); ?>

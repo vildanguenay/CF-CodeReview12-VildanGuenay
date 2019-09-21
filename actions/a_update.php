@@ -13,7 +13,6 @@ if ($_POST) {
     $time = $_POST['time'];
     $image = $_POST['image'];
     
-    // print_r($_POST);
    $updateQuery = "UPDATE location
             SET category = '$categroy', name ='$name', address = '$address', phone = '$phone', type='$type', web = '$web', description='$descr', image = '$image', date = '$date', time = '$time' 
             WHERE location_id = '$location_id'";
