@@ -14,7 +14,7 @@ if ($_POST) {
     $image = $_POST['image'];
     
    $updateQuery = "UPDATE location
-            SET category = '$categroy', name ='$name', address = '$address', phone = '$phone', type='$type', web = '$web', description='$descr', image = '$image', date = '$date', time = '$time' 
+            SET category = '$category', name ='$name', address = '$address', phone = '$phone', type='$type', web = '$web', description='$descr', image = '$image', date = '$date', time = '$time' 
             WHERE location_id = '$location_id'";
    if($conn->query($updateQuery) === TRUE) {
        echo  "<p>Successfully Updated</p>";

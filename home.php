@@ -44,8 +44,8 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
                           <li class='list-group-item'>".$lib['description']."</li>
                         </ul>
                      
-                        ".($_SESSION['admins'] ? "
-                          <div class='card-body'>
+                        ".($_SESSION['admins'] ? 
+                          "<div class='card-body'>
                             <form action='delete.php' method='GET'>
                   <!-- //   save id of clicked medium and send via btn click to db -->
                               <input type='hidden' name='id' value='".$lib['location_id']."' />
@@ -55,12 +55,16 @@ $userRow=mysqli_fetch_array($res, MYSQLI_ASSOC);
                               <input type='hidden' name='id' value='".$lib['location_id']."' />
                               <button type='submit'>update</button>
                             </form>
-                          </div>
-                        " : "")."</div>";
+                          </div>"
+                         : "").
+                      "</div>";
             }
-            echo "<div style='width: 100%;'>
-                    <button><a href = 'create.php'>Add Medium Here...</a></button>
-                  </div>";
+            if ($_SESSION['admins']) {
+              echo "<div style='width: 100%;'>
+                      <button><a href = 'create.php'>Add Medium Here...</a></button>
+                    </div>";
+            }
+
         } else  {
             echo "<tr>
                   <td colspan='5'>

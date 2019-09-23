@@ -1,8 +1,9 @@
 <?php
-if( !($_SESSION['admins']) ) {
+session_start();
+if(!($_SESSION['admins'])) {
     header("Location: index.php");
     exit;
-   }
+}
 ?>
 <!DOCTYPE html>
 <html>
